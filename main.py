@@ -1,19 +1,11 @@
-""" class Cliente{
+import boolear
+import Cadastro
 
-} """
-
-
-
-def boolear():
-    num1 = input(print("\n digite numero 1:"))
-    num2 = input(print("\n digite numero 2:"))
-
-    teste = num1 > num2
-    
-    print(f"{num1} é maior que {num2} ? {teste}")
-
+cliente1 = Cadastro()
 
 if __name__ == "__main__":
-    boolear()
-    
+    cliente1.nome = input(print("\nDigite nome do cliente: "))
+    cliente1.idade = input(print("\nDigite idade do cliente: "))
+    cliente1.endereco = input(print("\nDigite endereço do cliente: "))
+
         
