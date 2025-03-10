@@ -1,6 +1,6 @@
 class Cadastro:
-    nome  = ""
+    nome  = "nulo"
     idade = 0
-    endereco = ""
+    endereco = "nulo"
 
     
