@@ -1,11 +1,11 @@
 import boolear
-import Cadastro
+from classes import *
 
-cliente1 = Cadastro()
+cliente1 = Cadastro.Cadastro()
 
 if __name__ == "__main__":
-    cliente1.nome = input(print("\nDigite nome do cliente: "))
-    cliente1.idade = input(print("\nDigite idade do cliente: "))
-    cliente1.endereco = input(print("\nDigite endereço do cliente: "))
+    cliente1.nome = input("\nDigite nome do cliente: ")
+    cliente1.idade = input("\nDigite idade do cliente: ")
+    cliente1.endereco = input("\nDigite endereço do cliente: ")
 
         
