@@ -1,9 +1,3 @@
-""" Crie uma classe Carro com os atributos marca, modelo e ano. Adicione um método exibir_detalhes() que imprime essas informações.
-
-Desafio extra:
-Crie um objeto da classe Carro e chame o método exibir_detalhes(). """
-
-
 class Carro:
     
     def __init__(self,marca= "nulo",modelo="nulo",ano=0):
