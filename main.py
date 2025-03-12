@@ -33,6 +33,7 @@ def menu():
     print("\nDigite 3 para resgatar  |")
     option()
 
+'''aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'''
 def login():
 
     check_name = input("\nInsira nome de usuário: ")
