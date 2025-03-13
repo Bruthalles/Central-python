@@ -1,69 +1,40 @@
-import getpass
-from classes import Cadastro
-from classes import ContaBancaria
+from programs.car import Pg_Car
+from programs.bank import Pg_bank
+from programs.animals import Pg_animals
+from programs.temperature import Pg_temp
+from programs.enderecos import Pg_enderecos
 
-usr = Cadastro.Usuario()
-count = ContaBancaria.Contabancaria(0,0)
+def Choose_pg():
+    print(f"\nLista de programas: ")
+    print(f"\n Nº1: Executar car.py |")
+    print(f"\n Nº2: Executar bank.py |")
+    print(f"\n Nº3: Executar animals.py |")
+    print(f"\n Nº4: Executar temperature.py |")
+    print(f"\n Nº5: Executar enderecos.py |")
+    choose = int(input(f"\n Escolha qual programa executar, ou 6 para encerrar: "))
 
-def option():
-    result = int(input("\nEscolha uma ação: "))
-
-    if(result== 1):
-        count.show_balance()
-        option()
-
-    elif(result==2):
-        valor = input("\nQuanto irá depositar? ")
-        count.fill(valor)
-        option()
-
-    elif(result==3):
-        valor = input("\nDigite valor para saque: ")
-        count.empty(valor)
-        option()
-
-    else: 
-        print("\nOPÇÃO INDISPONÍVEL!")
-        option()
-
-def menu():
-    
-    print("\nDigite 1 para ver saldo |")
-    print("\nDigite 2 para depositar |")
-    print("\nDigite 3 para resgatar  |")
-    option()
-
-def login():
-
-    check_name = input("\nInsira nome de usuário: ")
-    check_passw = getpass.getpass("\nInsira sua senha: ")
-
-    if(check_name == usr.name and check_passw == usr.passw):
-        print(f"\n=======Bem-vindo, {usr.name}=======")
-        menu()
-
-    else: print("\nNOME DE USUÁRIO OU SENHA INCORRETOS")
-
+    if(choose== 1):
+        Pg_Car()
+        Choose_pg()
+    elif(choose== 2):
+        Pg_bank()
+        Choose_pg()
+    elif(choose== 3):
+        Pg_animals()
+        Choose_pg()
+    elif(choose== 4):
+        Pg_temp()
+        Choose_pg()
+    elif(choose== 5):
+        Pg_enderecos()
+        Choose_pg()
+    elif(choose==6):
+        return 0
+    else:
+        print("Programa inexistente!")
+        Choose_pg()
+   
 if __name__ == "__main__":
 
-    arquivo = open('dados.txt','r')
-    print("nome do arquivo: ",arquivo.name)
-    print("tamanho do arquivo (em bytes): ", arquivo.tell())
-    print("modo do arquivo",arquivo.mode)
-    print("arquivo está fechado? ", arquivo.closed)
-
-    arquivo.close()
-
-    print("arquivo está fechado? ",arquivo.closed)
-
-
-
-    if (usr.name == None):
-        usr.name = input("\nCadastre um nome de usuário para entrar na conta: ")
-
-    if(usr.passw == None):
-        usr.passw = getpass.getpass("\nCadastre sua senha para passar: ")
-        login()
-
-    else:
-        login()
+    Choose_pg()
+    
