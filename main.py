@@ -33,7 +33,6 @@ def menu():
     print("\nDigite 3 para resgatar  |")
     option()
 
-'''aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'''
 def login():
 
     check_name = input("\nInsira nome de usuário: ")
@@ -46,6 +45,19 @@ def login():
     else: print("\nNOME DE USUÁRIO OU SENHA INCORRETOS")
 
 if __name__ == "__main__":
+
+    arquivo = open('dados.txt','r')
+    print("nome do arquivo: ",arquivo.name)
+    print("tamanho do arquivo (em bytes): ", arquivo.tell())
+    print("modo do arquivo",arquivo.mode)
+    print("arquivo está fechado? ", arquivo.closed)
+
+    arquivo.close()
+
+    print("arquivo está fechado? ",arquivo.closed)
+
+
+
     if (usr.name == None):
         usr.name = input("\nCadastre um nome de usuário para entrar na conta: ")
 
