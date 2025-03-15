@@ -4,3 +4,16 @@ A classe Pessoa deve ter um atributo endereco que recebe um objeto da classe End
 
 Desafio extra:
 Permita que a Pessoa tenha mais de um endereço e imprima todos.'''
+        
+class Location():
+    def __init__(self,street,city):
+        self.street = street
+        self.city = city
+
+
+class People():
+    def __init__(self,name,age,location):
+        self.name = name
+        self.age = age
+        self.location = location.Location("","")
+        
