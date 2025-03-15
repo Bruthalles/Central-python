@@ -1,2 +1,2 @@
 def Pg_temp():
-    pass
+    print("\nExecutando Programa de temperatura... ")

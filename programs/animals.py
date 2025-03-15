@@ -24,5 +24,6 @@ def catordog():
         print(f"Isso aqui não é bagunça, ou você me obedece ou cai fora >:(")
     
 def Pg_animals():
+    print("\nExecutando Programa de animais... ")
     Cat.fazer_som(catordog())
     

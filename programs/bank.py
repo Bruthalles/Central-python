@@ -53,6 +53,7 @@ def login():
 
 def Pg_bank():
 
+    print("\nExecutando Programa do banco... ")
     if (usr.name == None):
         usr.name = input("\nCadastre um nome de usuário para entrar na conta: ")
 
