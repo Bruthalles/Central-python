@@ -7,8 +7,7 @@ dog = Dog("voidex")
 
 def catordog():
 
-    pet = input("\n Cat or Dog ? ")
-    pet = pet.lower()
+    pet = input("\n Cat or Dog ? ").lower()
    
     if(pet == "cat"):
         print(f"\nOlha o meme gritando miau. MIAAAAAAAAAAAAU")

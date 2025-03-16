@@ -4,7 +4,6 @@ A classe Pessoa deve ter um atributo endereco que recebe um objeto da classe End
 
 Desafio extra:
 Permita que a Pessoa tenha mais de um endereço e imprima todos.'''
-        
 class Location():
     def __init__(self,street,city):
         self.street = street
@@ -17,11 +16,13 @@ class People():
         location = obj_Location
         self.name = name
         self.age = age
-        self.location = obj_Location
         self.list = []
-    
-    def add_location(self,list:str):
-        self.list.append(list)
+        self.location = obj_Location
+        
+    def add_location(self,enders:str):
+        self.list.append(enders)
         print("\nNovo endereço adicionado!")
         print("\nAgora sua lista de endereços é:")
-        print(list())
+        for i in self.list:
+            print(f"\n{i}")
+        
