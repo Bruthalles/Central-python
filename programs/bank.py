@@ -42,7 +42,7 @@ def menu():
 
 def login():
 
-    check_name = input("\nInsira nome de usuário: ")
+    check_name = input("\nInsira nome de usuário: ").capitalize()
     check_passw = getpass.getpass("\nInsira sua senha: ")
 
     if(check_name == usr.name and check_passw == usr.passw):
@@ -55,7 +55,7 @@ def Pg_bank():
 
     print("\nExecutando Programa do banco... ")
     if (usr.name == None):
-        usr.name = input("\nCadastre um nome de usuário para entrar na conta: ")
+        usr.name = input("\nCadastre um nome de usuário para entrar na conta: ").capitalize()
 
     if(usr.passw == None):
         usr.passw = getpass.getpass("\nCadastre sua senha para passar: ")
