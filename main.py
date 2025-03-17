@@ -2,7 +2,7 @@ from programs.car import Pg_Car
 from programs.bank import Pg_bank
 from programs.animals import Pg_animals
 from programs.temperature import Pg_temp
-from programs.enderecos import Pg_enderecos
+from programs.elocations import Pg_enderecos
 
 def Choose_pg():
     print(f"\nLista de programas: ")
