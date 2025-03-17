@@ -16,7 +16,7 @@ class Animal:
         return 0 
 
 class Cat(Animal):
-    Animal.fazer_som("MIAAAAAAAAAU")
+    pass
 
 class Dog(Animal):
-    Animal.fazer_som("AUUUUUUUUUUUU")
+    pass
