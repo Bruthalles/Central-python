@@ -3,7 +3,7 @@ from classes.ContaBancaria import *
 
 usr = Usuario()
 count = Contabancaria(0,0)
-
+program = "account"
 def option():
     result = int(input("\nEscolha uma ação: "))
 

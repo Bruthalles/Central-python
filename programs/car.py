@@ -1,7 +1,7 @@
 from classes.Car import Car
-from timer import tm
-from checker import verify
-
+from modules.timer import tm
+from modules.checker import verify
+program = "cars"
 car = Car()
 
 def make_garage():

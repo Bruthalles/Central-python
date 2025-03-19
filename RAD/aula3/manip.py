@@ -1,13 +1,11 @@
 import os
-
 #path prepared to future uses
 path = 'dados.txt'
 abspath = 'home/thalles/thapython/'+path
 
 #function to clean file
 def clean():
-    option = input("\nwould you like to clean the file? S/N: ")
-    option = option.upper()
+    option = input(f"\nwould you like to clean {path}? S/N: ").upper()
 
     if(option == 'S'):
         with open(path,'w',encoding='utf-8') as file:
@@ -20,15 +18,17 @@ def clean():
             print(f"linha2: {linha2}")
 
 def write():
+    if os.path.exists(path):
+        print("arquivo existente")
+    else:
+        with open(path,'w',encoding='utf-8') as file:
+            reply = input("type something to save: ")
+            file.writelines(reply)
+            reply = input("type something to save: ")
+            file.writelines(f"\n{reply}")
 
-    with open(path,'w',encoding='utf-8') as file:
-        reply = input("type something to save: ")
-        file.writelines(reply)
-        reply = input("type something to save: ")
-        file.writelines(f"\n{reply}")
-
-        file = open(path,'r')
-        print(f"content of file: {file.read()}")
+            file = open(path,'r')
+            print(f"content of file: {file.read()}")
 
 def read():
 
@@ -40,10 +40,26 @@ def read():
     
 #function to add many lines of once
 def add():
-    with open(path,'w') as file:
+    with open('extra.txt','x') as file:
         file.writelines(["ana","\nmaria"])
-        print(file)
+        print(file.read())
 
+def create_file(program="",content=""):
+    #length = len(content)
+    choose = input(f"\nType 'S' to create a file about your {program}, Anything else to skip: ").upper()
+    if(choose == "S"):
+        name = input(f"Which name do you like to put? ")
+        if os.path.exists(name):
+            print("\nThis file  exists already")
+            create_file(program,content)
+        
+        with open(f"{name}.txt",'x',encoding='utf-8') as file:
+            for i in len(content):
+                file.writelines(f"\n({content[i]})")
+    else: return 0
+
+""" 
 write()
 read()
-clean()
+add()
+clean() """
