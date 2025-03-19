@@ -1,9 +1,9 @@
 from classes.Animal import Cat,Dog
-from timer import tm
+from modules.timer import tm
 #iniciando com string exclusiva para debug
 cat = Cat("voidex")
 dog = Dog("voidex")
-
+program = "animals"
 def catordog():
 
     pet = input("\n Cat or Dog ? ").lower()
