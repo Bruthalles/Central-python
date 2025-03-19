@@ -1,5 +1,3 @@
-/__pycache__
-/classes/__pycache__
-/programs/__pycache__
+**/__pycache__/
 janela.py 
 tkinter
