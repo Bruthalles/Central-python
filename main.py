@@ -1,8 +1,8 @@
-from programs.car import Pg_Car
-from programs.bank import Pg_bank
-from programs.animals import Pg_animals
-from programs.temperature import Pg_temp
-from programs.elocations import Pg_enderecos
+from backend.programs.car import Pg_Car
+from backend.programs.bank import Pg_bank
+from backend.programs.animals import Pg_animals
+from backend.programs.temperature import Pg_temp
+from backend.programs.elocations import Pg_enderecos
 
 def Choose_pg():
     print(f"\nLista de programas: ")
