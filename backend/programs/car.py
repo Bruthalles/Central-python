@@ -1,6 +1,6 @@
-from classes.Car import Car
-from src.modules.timer import tm
-from src.modules.checker import verify
+from backend.classes.Car import Car
+from backend.modules.timer import tm
+from backend.modules.checker import verify
 
 car = Car()
 

@@ -1,5 +1,5 @@
-from classes.ConversorTemp import *
-from src.modules.timer import tm
+from backend.classes.ConversorTemp import *
+from backend.modules.timer import tm
 
 def Pg_temp():
     print(f"\nExecutando Programa Conversor de temperatura... ")
