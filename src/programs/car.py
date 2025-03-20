@@ -1,6 +1,6 @@
-from classes.Car import Car
-from modules.timer import tm
-from modules.checker import verify
+from src.classes.Car import Car
+from src.modules.timer import tm
+from src.modules.checker import verify
 program = "cars"
 car = Car()
 

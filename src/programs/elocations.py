@@ -1,7 +1,7 @@
 '''Permita que a Pessoa tenha mais de um endereço e imprima todos.'''
-from classes.Locations import *
-from modules.checker import verify
-from RAD.aula3.manip import create_file
+from src.classes.Locations import *
+from src.modules.checker import verify
+from src.RAD.aula3.manip import create_file
 
 #iniciando atributos com qualquer conteúdo exclusivo para melhorar debug
 people = People("voidex","voidex","voidex")

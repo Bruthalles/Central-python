@@ -1,5 +1,5 @@
 import getpass
-from classes.ContaBancaria import *
+from src.classes.ContaBancaria import *
 
 usr = Usuario()
 count = Contabancaria(0,0)

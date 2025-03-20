@@ -1,5 +1,5 @@
-from classes.Animal import Cat,Dog
-from modules.timer import tm
+from src.classes.Animal import Cat,Dog
+from src.modules.timer import tm
 #iniciando com string exclusiva para debug
 cat = Cat("voidex")
 dog = Dog("voidex")
