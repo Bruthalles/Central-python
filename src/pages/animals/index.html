@@ -4,12 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>animals</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/animals.css')}}?v={{timestamp}}">
 </head>
 <body>
     <button onclick="window.location.href='/'">home</button>
-    <h1 style="color: blueviolet;font-size: 45px;">Animals</h1>
+    <h1 >Bem-vindo ao Cat or Dog!</h1>
+    <h2>um programa com uma mensagem divertida independente da sua escolha</h2>
+
+    <form action="/animals" method="post">
+        <label for="catordog">Cat or Dog?</label>
+        <input type="text" name="catordog" id="catordog" required>
+        <button type="submit">Enviar</button>
+        
+        {% if resultado == "cat"%}
+            
+            <audio controls>
+                <source src="{{url_for('static',filename='assets/miau.mp3')}}" type="audio/mp3">
+            </audio>
+        {% elif resultado == "dog"%}
+            
+            <audio controls>
+                <source src="{{url_for('static',filename='assets/au.mp3')}}" type="audio/mp3">
+            </audio>
+
+        {% elif resultado != "cat" or "dog" %}
+            <p>Opção Inválida, apenas Cat ou Dog</p>
+        {%endif%}
+    </form>
     
     
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum sapiente velit officia deleniti odio aut esse animi ut quis, laboriosam temporibus voluptatum error inventore nulla mollitia? Beatae amet doloribus nobis!</p>
 </body>
 </html>

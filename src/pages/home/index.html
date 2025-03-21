@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central de Programas</title>
-    <link href="src/pages/home/styles.css">
+    <link href="{{url_for('static',filename='css/1home.css')}}?v={{timestamp}}">
 </head>
 
 <body class=body>
-    <header style="color: red;">cabeçalho</header>
+    <header class="cabecalho">cabeçalho</header>
 
     <section >
         <h1 >Bem-vindo á minha central de programas em python! </h1>
         <p>De início são programas simples com intuito de praticar POO.</p>
         <p>Porém estou atualizando e criando mais funcionalidades.
         Em breve será possível exportar seus dados ;) </p>
-
+        
     </section>
     <aside>
         <button onclick="window.location.href='/animals'">Cat or Dog</button>
