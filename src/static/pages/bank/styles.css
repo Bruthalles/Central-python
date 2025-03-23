@@ -1,0 +1,16 @@
+.title{
+    color: orange;
+    font-size: 25px;
+    border-top: 23;
+    border-left: 50;
+}
+.form-login{
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    padding: 1%;
+}
+.bt-entrar{
+    margin: 5%;
+}
