@@ -1,6 +1,6 @@
 '''Permita que a Pessoa tenha mais de um endereço e imprima todos.'''
-from classes.Locations import *
-from src.modules.checker import verify
+from backend.classes.Locations import *
+from backend.modules.checker import verify
 #iniciando atributos com qualquer conteúdo exclusivo para melhorar debug
 people = People("voidex","voidex","voidex")
 
