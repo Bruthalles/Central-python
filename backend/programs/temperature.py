@@ -5,7 +5,7 @@ def Pg_temp():
     print(f"\nExecutando Programa Conversor de temperatura... ")
     tm(1.0)
 
-    choose = input(f"\n Escolha valor para converter, 'C' para Celsius, 'K' para Kelvin ou 'F' para Fahrenheit: ").upper()
+    choose = input(f"\n Escolha valor para converter, 'C' para Celsius, 'K' para Kelvin, 'F' para Fahrenheit ou 'R para Rankine: ").upper()
     if (choose == "C"):
         twoose = input("\nAgora escolha K ou F: ").upper()
         if (twoose == "K"):
