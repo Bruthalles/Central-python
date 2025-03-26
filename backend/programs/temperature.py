@@ -5,53 +5,65 @@ def Pg_temp():
     print(f"\nExecutando Programa Conversor de temperatura... ")
     tm(1.0)
 
-    choose = input(f"\n Escolha valor para converter, 'C' para Celsius, 'K' para Kelvin, 'F' para Fahrenheit ou 'R para Rankine: ").upper()
+    choose = input(f"\n Escolha valor para converter, 'C' para Celsius, 'F' para Fahrenheit , 'K' para Kelvin ou 'R' para Rankine: ").upper()
     if (choose == "C"):
-        twoose = input("\nAgora escolha K ou F: ").upper()
-        if (twoose == "K"):
-            celsius = float(input("\nDigite o grau em celsius para retornar em Kelvin: "))
-            tm(1.5)
-            print(ConversorTemp.celsius_to_kelvin(celsius))
-            tm(1.2)
-        elif(twoose == "F"):
-            celsius = float(input("\nDigite o grau em celsius para retornar em Fahrenheit: "))
-            tm(1.5)
+        twoose = input("\nAgora escolha F , K ou R: ").upper()
+        if(twoose == "F"):
+            celsius = float(input("\nDigite o grau em Celsius para retornar Fahrenheit: "))
             print(ConversorTemp.celsius_to_fahrenheit(celsius))
-            tm(1.2)
+        elif (twoose == "K"):
+            celsius = float(input("\nDigite o grau em Celsius para retornar Kelvin: "))
+            print(ConversorTemp.celsius_to_kelvin(celsius))
+        elif(twoose == 'R'):
+            celsius = float(input("\nDigite o grau em Celsius para retornar Rankine: "))
+            print(ConversorTemp.celsius_to_rankine(celsius))
         else:
             print("\nopção inválida")
             tm(1.4)
             return 0
 
     elif(choose == "F"):
-        twoose = input("\n Agora escolha C ou K: ").upper()
+        twoose = input("\n Agora escolha C , K ou R: ").upper()
         if (twoose == "C"):
-            fahr = float(input("\nDigite o grau em fahrenheit para retornar celsius: "))
-            tm(1.5)
+            fahr = float(input("\nDigite o grau em Fahrenheit para retornar Celsius: "))
             print(ConversorTemp.fahrenheit_to_celsius(fahr))
-            tm(1.2)
         elif(twoose == "K"):
-            fahr = float(input("\nDigite o grau em fahrenheit para retornar em kelvin: "))
-            tm(1.5)
+            fahr = float(input("\nDigite o grau em Fahrenheit para retornar Kelvin: "))
             print(ConversorTemp.fahrenheit_to_kelvin(fahr))
-            tm(1.2)
+        elif(twoose == "R"):
+            fahr = float(input("\nDigite o grau em Fahrenheit para retornar Rankine: "))
+            print(ConversorTemp.fahrenheint_to_rankine(fahr))
         else:
             print("\nopção inválida")
             tm(1.4)
             return 0
 
     elif(choose == "K"):
-        twoose = input("\nAgora escolha C ou f: ").upper()
+        twoose = input("\nAgora escolha C , F ou R: ").upper()
         if(twoose == "C"):
-            kelvin = float(input("\nDigite o grau em kelvin para retornar em celsius: "))
-            tm(1.5)
+            kelvin = float(input("\nDigite o grau em Kelvin para retornar Celsius: "))
             print(ConversorTemp.kevil_to_celsius(kelvin))
-            tm(1.2)
         elif(twoose == "F"):
-            kelvin = float(input("\nDigite o grau em kelvin para retornar em fahrenheit: "))
-            tm(1.5)
+            kelvin = float(input("\nDigite o grau em Kelvin para retornar Fahrenheit: "))
             print(ConversorTemp.kelvin_to_fahrenheit(kelvin))
-            tm(1.2)
+        elif(twoose == "R"):
+            kelvin = float(input("\nDigite o grau em Kelvin para retornar Rankine: "))
+            print(ConversorTemp.kelvin_to_rankine(kelvin))
+        else:
+            print("\nopção inválida")
+            tm(1.4)
+            return 0
+    elif(choose == "R"):
+        twoose = input("\nAgora escolha C , F ou K: ").upper()
+        if(twoose == "C"):
+            rankine = float(input("\nDigite o grau em Rankine para retornar Celsius: "))
+            print(ConversorTemp.rankine_to_celsius(rankine))
+        elif(twoose == "F"):
+            rankine = float(input("\nDigite o grau em Rankine para retornar Fahrenheit: "))
+            print(ConversorTemp.rankine_to_fahrenheit(rankine))
+        elif(twoose == "K"):
+            rankine = float(input("\nDigite o grau em Rankine para retornar Kelvin: "))
+            print(ConversorTemp.rankine_to_kelvin(rankine))
         else:
             print("\nopção inválida")
             tm(1.4)
