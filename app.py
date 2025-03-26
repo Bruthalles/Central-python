@@ -1,4 +1,5 @@
 import time
+import re
 from flask import Flask,request, render_template, send_from_directory
 app = Flask(__name__,template_folder="src/templates/",static_folder="src/static")
 
@@ -42,3 +43,14 @@ def processarcatordog():
 @app.route('/src/assets/')
 def serve_assets(filename):
     return send_from_directory(filename)
+
+@app.route('/banco', methods=['GET','POST'])
+def verify_email():
+    pattern = r"^\b\w+@\w+\.\w+\b$"
+    enter_email = request.form.get('email')
+
+    if not enter_email:
+        return render_template('/bank/index.html',error="nenhum email fornecido.")
+    if re.fullmatch(pattern, enter_email):
+        return render_template('/bank/index.html', input=enter_email)
+    else: return render_template('/bank/index.html', error="email invalido")
