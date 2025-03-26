@@ -3,6 +3,7 @@ from backend.programs.bank import Pg_bank
 from backend.programs.animals import Pg_animals
 from backend.programs.temperature import Pg_temp
 from backend.programs.elocations import Pg_enderecos
+from app import app
 
 def Choose_pg():
     print(f"\nLista de programas: ")
@@ -35,6 +36,6 @@ def Choose_pg():
         Choose_pg()
    
 if __name__ == "__main__":
-
+    app.run(debug=True)
     Choose_pg()
     
