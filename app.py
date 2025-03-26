@@ -1,6 +1,5 @@
 import time
 from flask import Flask,request, render_template, send_from_directory
-from backend.programs.animals import catordog
 app = Flask(__name__,template_folder="src/templates/",static_folder="src/static")
 
 #///////////////////////  ROUTES  ///////////////////////////////      
@@ -43,6 +42,3 @@ def processarcatordog():
 @app.route('/src/assets/')
 def serve_assets(filename):
     return send_from_directory(filename)
-
-#if __name__ == '__main__':
-app.run(debug=True)
