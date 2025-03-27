@@ -67,9 +67,4 @@ padrao = r'\b\w+@+\w+\.\w+b'
 novotexto = re.sub(padrao,"[email oculto]",texto)
 print(novotexto)'''
 
-def verify_email(email):
-    pattern = r"^\b\w+@\w+\.\w+\b$"
-    if re.fullmatch(pattern,email):
-        print(f"\nEmail: '{email}' válido!")
-    else:
-        print("\nemail invalido")
+d
