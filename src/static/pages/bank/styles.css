@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(61, 52, 52);
+}
+
 .title{
     color: orange;
     font-size: 25px;
@@ -13,4 +17,10 @@
 }
 .bt-entrar{
     margin: 5%;
+}
+.form-login .erro{
+    color: red;
+    font-size: 50px;
+    align-items: center;
+
 }
