@@ -14,10 +14,15 @@ def animal():
     timestamp = time.time()
     return render_template('animals/index.html',timestamp=timestamp)
 
-@app.route('/banco')
+@app.route('/banco-login')
 def banco():
     timestamp = time.time()
     return render_template('bank/index.html',timestamp=timestamp)
+
+@app.route('/conta-bancaria')
+def conta():
+    timestamp = time.time()
+    return render_template('bank/count.html',timestamp=timestamp)
 
 @app.route('/garage')
 def cars():
@@ -44,13 +49,33 @@ def processarcatordog():
 def serve_assets(filename):
     return send_from_directory(filename)
 
-@app.route('/banco', methods=['GET','POST'])
+#///////////// LOGIN ////////////////////////
+'''
+@app.route('/banco-login', methods=['GET','POST'])
 def verify_email():
+    
+    
     pattern = r"^\b\w+@\w+\.\w+\b$"
     enter_email = request.form.get('email')
-
     if not enter_email:
         return render_template('/bank/index.html',error="nenhum email fornecido.")
+    
+     validação no formato de email
     if re.fullmatch(pattern, enter_email):
         return render_template('/bank/index.html', input=enter_email)
-    else: return render_template('/bank/index.html', error="email invalido")
+    else: return render_template('/bank/index.html', error="email invalido")'''
+
+@app.route('/banco-login',methods=['GET','POST'])
+def login():
+    email = "thalles@1"
+    password = "1234"
+    in_email = request.form.get('email')
+    in_pass = request.form.get('password')
+
+    if in_email == email and in_pass == password:
+        return render_template('/bank/count.html')
+    else:
+        return render_template('/bank/index.html',error='Email ou senha incorretos')
+   
+
+    
