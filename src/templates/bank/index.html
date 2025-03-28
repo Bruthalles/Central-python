@@ -9,19 +9,23 @@
 <body>
     
     <button onclick="window.location.href='/'">home</button>
-    <h1 class="title">Bem-vindo ao banco!</h1>
-    <form class="form-login" action="/banco" method="post">
+    <h1 class="title">Faça seu log-in</h1>
+    <form class="form-login" action="/banco-login" method="post">
         <input type="email" name="email" placeholder="E-mail" required>
-        <input type="password" name="password" placeholder="Senha">
-        <button class="bt-entrar" type="submit">Entrar</button>
-    </form>
+        <input type="password" name="password" placeholder="Senha" required>
+        <button name="bt-entrar" class="bt-entrar" type="submit">Entrar</button>
 
-    {% if input %}
+        <div>
+            {% if input %}
         <p style="color: green;">Email:  '{{input}}' validado com sucesso</p>
     {% endif %}
     {% if error %}
-        <p style="color: red;">{{error}}</p>
+        <p class="erro">{{error}}</p>
     {% endif %}
+        </div>
+    </form>
+
+    
 
 </body>
 </html>
