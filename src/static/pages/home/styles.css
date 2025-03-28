@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(177, 168, 231);
+}
+
 .title{
     color: blue;
     font-size: 25px;
