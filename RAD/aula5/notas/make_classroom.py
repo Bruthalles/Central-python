@@ -9,7 +9,6 @@ def make_classroom(name,nota,turma):
             state_loop = False
         else: 
             turma = turma.append(name)
-            turma = len(turma)
             nota = int(input(f"\n Digite nota do(a) {name}: "))
             print(turma)
-
+            print(f"\n tamanho da turma: {len(turma)} alunos")

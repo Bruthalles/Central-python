@@ -3,7 +3,7 @@ import os
 from make_classroom import make_classroom
 from Aluno import Aluno
 
-aluno = Aluno('','','oi')
+aluno = Aluno()
 if __name__ == '__main__':
 
     print(aluno.turma)
