@@ -20,6 +20,12 @@ def banco():
     timestamp = time.time()
     return render_template('bank/index.html',timestamp=timestamp)
 
+@app.route('/sign-in')
+def signin():
+    timestamp = time.time()
+    return render_template('/bank/signin.html',timestamp=timestamp)
+
+
 @app.route('/garage')
 def cars():
     timestamp = time.time()
