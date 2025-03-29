@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{{url_for('static',filename='pages/bank/styles.css')}}?v={{timestamp}}">
 </head>
 <body>
     
     <button onclick="window.location.href='/'">home</button>
-    <h1 class="title">Faça seu log-in</h1>
+    <h1 class="title">Inter</h1>
+
     <form class="form-login" action="/banco-login" method="post">
-        <input type="email" name="email" placeholder="E-mail" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <button name="bt-entrar" class="bt-entrar" type="submit">Entrar</button>
+        <a href="/sign-in">Não tenho conta</a>
+        <input class="email {%if error%}erro{%endif%}" type="email" name="email" placeholder="E-mail" required>
+        <input class="password {%if error%}erro{%endif%}" type="password" name="password" placeholder="Senha" required>
+        {% if error %}
+           <div class="text-erro">{{error}}</div>
+        
+    {% endif %}
+        <button  name="bt-entrar" class="bt-entrar" type="submit"><p class="text-bt-entrar">Entrar</p></button>
+        <button name="bt-senha" class="bt-senha" type="submit"><p class="text-bt-senha">Não sei minha senha</p></button>
 
         <div>
-            {% if input %}
-        <p style="color: green;">Email:  '{{input}}' validado com sucesso</p>
-    {% endif %}
-    {% if error %}
-        <p class="erro">{{error}}</p>
-    {% endif %}
+            
+    
         </div>
     </form>
 
