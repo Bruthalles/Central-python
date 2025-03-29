@@ -1,7 +1,8 @@
 import time
 import re
-from flask import Flask,request, render_template, send_from_directory
+from flask import Flask,request,redirect, session,render_template, send_from_directory
 app = Flask(__name__,template_folder="src/templates/",static_folder="src/static")
+app.secret_key = "LAOQJ012JR3-098HA"
 
 #///////////////////////  ROUTES  ///////////////////////////////      
 @app.route('/')
@@ -18,11 +19,6 @@ def animal():
 def banco():
     timestamp = time.time()
     return render_template('bank/index.html',timestamp=timestamp)
-
-@app.route('/conta-bancaria')
-def conta():
-    timestamp = time.time()
-    return render_template('bank/count.html',timestamp=timestamp)
 
 @app.route('/garage')
 def cars():
@@ -73,9 +69,21 @@ def login():
     in_pass = request.form.get('password')
 
     if in_email == email and in_pass == password:
-        return render_template('/bank/count.html')
+        session["user"] = email
+        return redirect('/conta-bancaria')
     else:
         return render_template('/bank/index.html',error='Email ou senha incorretos')
+    
+    return render_template('/bank/index.html')
    
+@app.route('/conta-bancaria')
+def count():
+    if "user" not in session:
+        return redirect('/banco-login')
+    return render_template('/bank/count.html')
 
+@app.route('/logout')
+def logout():
+    session.pop("user",None)
+    return redirect('/banco-login')
     
