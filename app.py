@@ -1,9 +1,27 @@
-import time
-import re
-from flask import Flask,request,redirect, session,render_template, send_from_directory
-app = Flask(__name__,template_folder="src/templates/",static_folder="src/static")
-app.secret_key = "LAOQJ012JR3-098HA"
+import time, re,os
+from datetime import timedelta
+from data.db import db, init_db
+from data.models import User
+from dotenv import load_dotenv
+from flask import Flask,request,redirect, session,url_for,render_template, send_from_directory
 
+#defining source folders
+app = Flask(__name__,template_folder="src/templates/",static_folder="src/static")
+
+#conections
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # evita warnings
+
+init_db(app)
+
+#secret-key
+load_dotenv()
+app.secret_key = os.getenv("SECRET_KEY")
+#life time session
+app.permanent_session_lifetime = timedelta(minutes=2)
+
+#global message error
+error='Email ou senha incorretos'
 #///////////////////////  ROUTES  ///////////////////////////////      
 @app.route('/')
 def home():
@@ -20,11 +38,10 @@ def banco():
     timestamp = time.time()
     return render_template('bank/index.html',timestamp=timestamp)
 
-@app.route('/sign-in')
-def signin():
+@app.route('/timeout')
+def timeout():
     timestamp = time.time()
-    return render_template('/bank/signin.html',timestamp=timestamp)
-
+    return render_template('bank/timeout.html',timestamp=timestamp)
 
 @app.route('/garage')
 def cars():
@@ -47,49 +64,57 @@ def processarcatordog():
     resultado = request.form.get('catordog').lower()
     return render_template('animals/index.html',resultado=resultado)
 
-@app.route('/src/assets/')
-def serve_assets(filename):
-    return send_from_directory(filename)
-
-#///////////// LOGIN ////////////////////////
-'''
-@app.route('/banco-login', methods=['GET','POST'])
-def verify_email():
-    
-    
-    pattern = r"^\b\w+@\w+\.\w+\b$"
-    enter_email = request.form.get('email')
-    if not enter_email:
-        return render_template('/bank/index.html',error="nenhum email fornecido.")
-    
-     validação no formato de email
-    if re.fullmatch(pattern, enter_email):
-        return render_template('/bank/index.html', input=enter_email)
-    else: return render_template('/bank/index.html', error="email invalido")'''
+#///////////// FUNCTIONS OF LOGIN ////////////////////////
+@app.route('/sign-in',methods=['GET','POST'])
+def signin():
+    if request.method == 'POST':
+        newemail = request.form.get('newemail')
+        newpassword = request.form.get('newpassword')
+        passpattern = r"^.{4}$"
+        email_pattern = r"^\b\w+@\w+\.\w+\b$"
+        if re.fullmatch(email_pattern, newemail) and re.fullmatch(passpattern, newpassword):
+            user = User.query.filter_by(email=newemail).first()
+            if user:
+                return render_template('bank/signin.html', error="Usuário já existe")
+            else:
+                new_user = User(email=newemail, password=newpassword)
+                db.session.add(new_user)
+                db.session.commit()
+                print(new_user)
+                return redirect(url_for('login'))
+        else:
+            return render_template('bank/signin.html', error="Formato do email ou senha inválido")
+    return render_template('bank/signin.html')
 
 @app.route('/banco-login',methods=['GET','POST'])
 def login():
-    email = "thalles@1"
-    password = "1234"
-    in_email = request.form.get('email')
-    in_pass = request.form.get('password')
-
-    if in_email == email and in_pass == password:
-        session["user"] = email
-        return redirect('/conta-bancaria')
-    else:
-        return render_template('/bank/index.html',error='Email ou senha incorretos')
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        passpattern = r"^.{4}$"
+        pattern = r"^\b\w+@\w+\.\w+\b$"
+    
+        if re.fullmatch(pattern, email) and re.fullmatch(passpattern,password):
+            user = User.query.filter_by(email=email).first()
+            if user and user.password == password:
+                session["user"] = email
+                return redirect(url_for('count'))
+            else: 
+                return render_template('bank/index.html',error=error)
+        else:
+            return render_template('/bank/index.html',error="Formato de email ou senha inválido")
     
     return render_template('/bank/index.html')
    
 @app.route('/conta-bancaria')
 def count():
-    if "user" not in session:
-        return redirect('/banco-login')
-    return render_template('/bank/count.html')
+    if "user" in session:
+        return render_template('/bank/count.html')
+    return redirect(url_for('timeout'))
 
 @app.route('/logout')
 def logout():
     session.pop("user",None)
-    return redirect('/banco-login')
-    
+    return redirect(url_for('login'))
+
+app.run(debug=True)
