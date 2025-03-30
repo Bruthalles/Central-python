@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timeout</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='pages/bank/styles.css')}}?v={{timestamp}}">
+</head>
+<body>
+    <section>
+        <h1>Sua sessão expirou!</h1>
+        <h2>Por motivos de segurança, faça novamente o login</h2>
+        <button onclick="window.location.href='/banco-login'">Log-in</button>
+        <h4>ou</h4>
+        <button onclick="window.location.href='/'">Tela de início</button>
+    </section>
+</body>
+</html>

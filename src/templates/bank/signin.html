@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="{{url_for('static',filename='pages/bank/styles.css')}}?v={{timestamp}}">
 </head>
 <body>
-    <h1>Cadastre um novo perfil</h1>
+    
+    <form class="form-login" action="/sign-in" method="post">
+        <h1>Cadastre um novo perfil</h1>
+        <a href="/banco-login">Já tenho conta</a>
+        <input class="email {%if error%}erro{%endif%}" type="email" name="newemail" placeholder="E-mail" required>
+        <input class="password {%if error%}erro{%endif%}" type="password" name="newpassword" placeholder="Senha" required>
+        {% if error %}
+           <div class="text-erro">{{error}}</div>
+        
+    {% endif %}
+        <button  name="bt-entrar" class="bt-entrar" type="submit"><p class="text-bt-entrar">Cadastrar</p></button>
+        
 </body>
 </html>
