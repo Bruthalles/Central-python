@@ -10,26 +10,38 @@
 <body>
     <button onclick="window.location.href='/'">home</button>
     <h1 class="title">Bem-vindo ao Cat or Dog!</h1>
-    <h2>um programa com uma mensagem divertida independente da sua escolha</h2>
-
-    <form action="/animals" method="post">
-        <label for="catordog">Cat or Dog?</label>
-        <input type="text" name="catordog" id="catordog" required>
-        <button type="submit">Enviar</button>
-        
-        {% if resultado == "cat"%}
-            
-            <audio controls>
-                <source src="{{url_for('static',filename='assets/miau.mp3')}}" type="audio/mp3">
-            </audio>
-        {% elif resultado == "dog"%}
-            
-            <audio controls>
-                <source src="{{url_for('static',filename='assets/au.mp3')}}" type="audio/mp3">
-            </audio>
-        {%endif%}
-    </form>
-    
+        <section class="sectbtns">
+            <button class="btnanimal" onclick="audioCat()" name="cat">
+                <img class="btnanimal img" src="{{url_for('static',filename='assets/crazy_cat.jpeg')}}" alt="felino alérgico á internet">
+                <span>Meow</span>
+            </button>
+           
+            <button class="btnanimal" onclick="audioDog()" name="dog">
+                <img class="btnanimal img" src="{{url_for('static',filename='assets/dogout.jpeg')}}" alt="doguinho caramelo chinês">
+                <span>AUUU</span>
+            </button>
+        </section>
+        <div class="secaudio" id="audio-container"></div>
+    <script>
+        function audioCat(){
+            let container = document.getElementById("audio-container");
+            container.innerHTML = `
+                <audio controls autoplay>
+                    <source src="{{url_for('static',filename='assets/miau.mp3')}}" type="audio/mp3">
+                    Seu navegador não suporta audio.
+                </audio>
+            `;
+        }
+        function audioDog(){
+            let container = document.getElementById("audio-container");
+            container.innerHTML = `
+                <audio controls autoplay>
+                    <source src="{{url_for('static',filename='assets/au.mp3')}}" type="audio/mp3">
+                    Seu navegador não suporta audio.
+                </audio>
+            `;
+        }
+    </script>
     
 </body>
 </html>
