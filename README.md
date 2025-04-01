@@ -1,4 +1,6 @@
-repositorio criado para praticar python, POO, git e desenvolvimento rápido de software
+repositorio criado para praticar python, POO, git e RAD
+A branch main contém programas que no início eram exercícios simples de POO do ChatGPT.
+Eu os transformei cada um em um projeto fullstack
 
 # Olá mundo, Me chamo Thalles Brumatti 👋
 ---
