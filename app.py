@@ -57,13 +57,7 @@ def loc():
 def conversor():
     timestamp = time.time()
     return render_template("etemperature/index.html",timestamp=timestamp)
-
-#obtendo resposta do form para verificação
-@app.route('/animals',methods=['GET','POST'])
-def processarcatordog():
-    resultado = request.form.get('catordog').lower()
-    return render_template('animals/index.html',resultado=resultado)
-
+   
 #///////////// FUNCTIONS OF LOGIN ////////////////////////
 @app.route('/sign-in',methods=['GET','POST'])
 def signin():
