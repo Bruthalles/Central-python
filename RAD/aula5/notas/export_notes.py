@@ -1,24 +1,23 @@
 from Aluno import *
 import os
 
-def export_notes(nome,nota,turma):
-   
+def export_notes(turma):
+
     choose = input("\nX para exportar notas ou A para adicionar aluno: ").lower()
     if choose == "x":
-        path = "notas.txt"
-        
+        path = 'notas.txt'
         if not os.path.exists(path):
-            while len(turma):
-                with open(path,'w',encoding='utf-8') as file:
-                    file.writelines(f"Aluno: {nome.capitalize()}, Nota: {nota}")
-                    file.writelines("\n")
+            for aluno in turma:
+                with open(path,'a',encoding='utf-8') as file:
+                    file.writelines(f"Aluno: {aluno}\n")
+                
             print("Dados da turma exportados para notas.txt")
-            print(nome,nota)
+            return 0
         else:
-            print(FileExistsError , "arquivo já existente")
-
+            print(FileExistsError , f"arquivo {path} já existente")
+    
     elif choose == "a":
-        Aluno.make_classroom(nome,nota,turma)
+        return 0
 
     else: print("\nOpção inválida")
             
