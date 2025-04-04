@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{{url_for('static',filename='pages/cars/styles.css')}}?v={{timestamp}}">
 </head>
 <body>
-    <button onclick="window.location.href='/'">home</button>
-    <button class="add-car" onclick="addCar()">Adicionar carro</button>
+    <button class="btn-home" onclick="window.location.href='/'">home</button>
+    <button class="add-carro" onclick="formCar()">Adicionar carro</button>
     <div id="add-car-container"></div>
     
     <h1 class="title">Sua Garagem:</h1>
@@ -16,38 +16,7 @@
 
     <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora expedita vero fuga dolores veniam sequi corrupti repellendus nulla, quisquam sit quam provident quas, odio dolore perspiciatis obcaecati dignissimos ea placeat?</h1>
 
-    <script>
-        function addCar(){
-            let container = document.getElementById("add-car-container");
-            container.innerHTML= `
-            <label class="label">
-                <p id="marca" class="p">Marca</p>    
-            </label>
-            <input type="text" placeholder="Ex. Honda">
-
-            <label class="label">
-                <p id="modelo" class="p">Modelo</p>    
-            </label>
-            <input type="text" placeholder="Ex. Civic">
-
-            <label class="label">
-                <p id="ano" class="p">Ano</p>    
-            </label>
-            <input type="text" placeholder="Ex. 2025">
-
-            <button class="guardar-carro" onclick="guardarCar()" type="submit">Guardar carro</button>`;
-        }
-        function guardarCar(){
-            let marca = document.getElementById("marca");
-            let modelo = document.getElementById("modelo");
-            let ano = document.getElementById("ano");
-        
-            let garage = {'Marca': marca, 'Modelo':modelo,'Ano':ano};
-
-            let container = document.getElementById("garage");
-            container.innerHTML = `<scrpt>garage</script>`
-
-        }
-    </script>
+    <script type="module" src="{{url_for('static',filename='scripts/formCar.js')}}"></script>
+    <script type="module" src="{{url_for('static',filename='scripts/guardarCar.js')}}"></script>
 </body>
 </html>
