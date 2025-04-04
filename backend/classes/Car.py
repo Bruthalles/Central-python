@@ -6,8 +6,8 @@ Crie um objeto da classe Carro e chame o método exibir_detalhes().'''
 class Car:
     
     def __init__(self,marca= "nulo",modelo="nulo",ano=0):
-        self.marca = marca 
-        self.modelo = modelo
+        self.marca = marca.capitalize()
+        self.modelo = modelo.capitalize()
         self.ano = ano
         self.cars = []
 
@@ -22,3 +22,10 @@ class Car:
         for i in self.cars:
             print(f"\n{i}")
         return 0
+    
+    def to_dict(self):
+        return{
+            "Marca": self.marca,
+            "Modelo": self.modelo,
+            "Ano": self.ano
+        }
