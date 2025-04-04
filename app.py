@@ -1,12 +1,15 @@
 import time, re,os
+from backend.classes.Car import Car
 from datetime import timedelta
 from data.db import db, init_db
 from data.models import User
 from dotenv import load_dotenv
-from flask import Flask,request,redirect, session,url_for,render_template, send_from_directory
+from flask import Flask,request,jsonify,redirect, session,url_for,render_template, send_from_directory
+from flask_cors import CORS
 
 #defining source folders
 app = Flask(__name__,template_folder="src/templates/",static_folder="src/static")
+CORS(app) #habilita requisições js
 
 #conections
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -22,17 +25,23 @@ app.permanent_session_lifetime = timedelta(minutes=2)
 
 #global message error
 error='Email ou senha incorretos'
-#///////////////////////  ROUTES  ///////////////////////////////      
+#///////////////////////  ROUTES  ///////////////////////////////
+
+#Page home:
 @app.route('/')
 def home():
     timestamp = time.time()
     return render_template('home/index.html',timestamp=timestamp)
+########################
 
+#All about page animals
 @app.route('/animals')
 def animal():
     timestamp = time.time()
     return render_template('animals/index.html',timestamp=timestamp)
+##########################
 
+#All about page bank
 @app.route('/banco-login')
 def banco():
     timestamp = time.time()
@@ -42,22 +51,41 @@ def banco():
 def timeout():
     timestamp = time.time()
     return render_template('bank/timeout.html',timestamp=timestamp)
+#############################
 
+#All about page garage
 @app.route('/garage')
 def cars():
     timestamp = time.time()
     return render_template('cars/index.html',timestamp=timestamp)
 
+@app.route('/garage',methods=['POST'])
+def enviar_carros():
+    data = request.json
+    marca = data.get('marca',"vazia")
+    modelo = data.get("modelo","vazio")
+    ano = data.get("ano","nulo")
+    carro = Car(marca,modelo,ano)
+    return jsonify({"carro": {"Marca":carro.marca, "Modelo": carro.modelo, "Ano":carro.ano}})
+
+#########################
+
+#All about page locations
 @app.route('/locations')
 def loc():
     timestamp = time.time()
     return render_template('elocations/index.html',timestamp=timestamp)
 
+#################################
+
+#All about page conversor
 @app.route('/conversor')
 def conversor():
     timestamp = time.time()
     return render_template("etemperature/index.html",timestamp=timestamp)
-   
+
+ #############################  
+
 #///////////// FUNCTIONS OF LOGIN ////////////////////////
 @app.route('/sign-in',methods=['GET','POST'])
 def signin():
