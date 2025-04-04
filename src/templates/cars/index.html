@@ -8,9 +8,46 @@
 </head>
 <body>
     <button onclick="window.location.href='/'">home</button>
-    <form action="/" method="post">
+    <button class="add-car" onclick="addCar()">Adicionar carro</button>
+    <div id="add-car-container"></div>
+    
     <h1 class="title">Sua Garagem:</h1>
+    <div id="garage"></div>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora expedita vero fuga dolores veniam sequi corrupti repellendus nulla, quisquam sit quam provident quas, odio dolore perspiciatis obcaecati dignissimos ea placeat?</p>
+    <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora expedita vero fuga dolores veniam sequi corrupti repellendus nulla, quisquam sit quam provident quas, odio dolore perspiciatis obcaecati dignissimos ea placeat?</h1>
+
+    <script>
+        function addCar(){
+            let container = document.getElementById("add-car-container");
+            container.innerHTML= `
+            <label class="label">
+                <p id="marca" class="p">Marca</p>    
+            </label>
+            <input type="text" placeholder="Ex. Honda">
+
+            <label class="label">
+                <p id="modelo" class="p">Modelo</p>    
+            </label>
+            <input type="text" placeholder="Ex. Civic">
+
+            <label class="label">
+                <p id="ano" class="p">Ano</p>    
+            </label>
+            <input type="text" placeholder="Ex. 2025">
+
+            <button class="guardar-carro" onclick="guardarCar()" type="submit">Guardar carro</button>`;
+        }
+        function guardarCar(){
+            let marca = document.getElementById("marca");
+            let modelo = document.getElementById("modelo");
+            let ano = document.getElementById("ano");
+        
+            let garage = {'Marca': marca, 'Modelo':modelo,'Ano':ano};
+
+            let container = document.getElementById("garage");
+            container.innerHTML = `<scrpt>garage</script>`
+
+        }
+    </script>
 </body>
 </html>
