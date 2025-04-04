@@ -1,7 +1,6 @@
 body{
-    background-color: rgb(25, 0, 255);
+    background-color: rgb(12, 1, 114);
 }
-
 .title{
     color: rgb(255, 255, 255);
     font-size: 25px;
@@ -40,6 +39,9 @@ input{
 }
 .btn-home{
     cursor: pointer;
+}
+section{
+    background-color: white;
 }
 .add-carro{
     cursor: pointer;
