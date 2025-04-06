@@ -2,8 +2,9 @@
 from Aluno import *
 from export_notes import *
 
-aluno = Aluno()
 if __name__ == '__main__':
+
+    aluno = Aluno()
     state_loop = True
 
     while state_loop:
@@ -13,3 +14,4 @@ if __name__ == '__main__':
             state_loop = False
         else: 
             aluno.make_classroom()
+            
