@@ -37,14 +37,22 @@ input{
     border-color: blue;
     margin-bottom: 2%;
 }
-.btn-home{
-    cursor: pointer;
-}
 section{
     background-color: white;
 }
+.btn-home{
+    cursor: pointer;
+    height: 40px;
+    border-color: blue;
+    border-style:solid;
+    border-radius: 10px;
+}
 .add-carro{
     cursor: pointer;
+    height: 40px;
+    border-color: blue;
+    border-style:solid;
+    border-radius: 10px;
 }
 .guardar-carro{
     cursor: pointer;
