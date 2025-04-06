@@ -1,0 +1,2 @@
+Aluno: {'nome': 'Leo', 'nota': 32}
+Aluno: {'nome': '11', 'nota': 11}
