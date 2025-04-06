@@ -1,6 +1,14 @@
 body{
     background-color: rgb(177, 168, 231);
 }
+header{
+    width: 100%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px 10px 0px 0px;
+}
 
 .title{
     color: blue;
@@ -10,4 +18,17 @@ body{
 }
 button{
     cursor: pointer;
+    height: 40px;
+    border-color: blue;
+    border-style:solid;
+    border-radius: 10px;
+}
+.btns{
+    display: flex;
+    justify-content:space-between;
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
