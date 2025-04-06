@@ -21,6 +21,13 @@ a{
     justify-self: center;
     
 }
+.btn-home{
+    cursor: pointer;
+    height: 40px;
+    border-color: blue;
+    border-style:solid;
+    border-radius: 10px;
+}
 .form-login{
     justify-content: center;
     align-items: center;
@@ -54,6 +61,7 @@ a{
     font-size: 20px;
 }
 .bt-entrar{
+    cursor: pointer;
     width: 62%;
     margin: 5%;
     border-radius: 8px;
@@ -61,6 +69,7 @@ a{
     background-color: rgb(255, 115, 0);
 }
 .bt-senha{
+    cursor: pointer;
     width: 62%;
     margin: 5%;
     border-radius: 8px;
