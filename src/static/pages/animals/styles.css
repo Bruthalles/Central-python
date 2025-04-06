@@ -7,6 +7,13 @@ body{
     border-top: 23;
     border-left: 50;
 }
+.btn-home{
+    cursor: pointer;
+    height: 40px;
+    border-color: blue;
+    border-style:solid;
+    border-radius: 10px;
+}
 .sectbtns{
     display: flex;
     flex-direction: row;
