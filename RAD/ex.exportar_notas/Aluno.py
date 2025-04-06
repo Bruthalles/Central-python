@@ -5,6 +5,11 @@ class Aluno:
         self.nota = nota
         self.turma=[]
 
+    def clear_turma(self):
+        self.nome = None
+        self.nota = None
+        self.turma =[]
+
     def make_classroom(self):
         
         self.nome = input("\nDigite nome do aluno: ")
@@ -18,4 +23,5 @@ class Aluno:
         # ###
         print(f"\ntamanho da turma: {len(self.turma)} alunos")
         export_notes(self.turma)
+        self.clear_turma()
         return 0
