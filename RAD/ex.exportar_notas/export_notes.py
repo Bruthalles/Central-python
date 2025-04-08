@@ -6,7 +6,7 @@ def export_notes(turma):
 
     choose = input("\nX para exportar notas ou A para adicionar aluno: ").lower()
     if choose == "x":
-        path = 'notas.txt'
+        path = 'RAD/ex.exportar_notas/notas.txt'
         if not os.path.exists(path):
 
             with open(path,'w',encoding='utf-8')as f:
@@ -14,7 +14,7 @@ def export_notes(turma):
             tm(5.0)
             for aluno in turma:
                 with open(path,'a',encoding='utf-8') as file:
-                    file.writelines(f"Aluno: {aluno}\n")
+                    file.write(f"Aluno: {aluno.nome}. Nota: {aluno.nota}\n")
                 
             print("Dados da turma exportados para notas.txt")
             return 0
@@ -25,7 +25,7 @@ def export_notes(turma):
                 tm(5)
                 for aluno in turma:
                     with open(path,'a',encoding='utf-8') as file:
-                        file.writelines(f"Aluno: {aluno}\n")
+                        file.write(f"Aluno: {aluno.nome}. Nota: {aluno.nota}\n")
             
                 print("novo aluno adicionado à turma")
                 return 0
@@ -38,7 +38,7 @@ def export_notes(turma):
                     w.write('')
                 for aluno in turma:
                     with open(path,'a',encoding='utf-8') as file:
-                        file.writelines(f"Aluno: {aluno}\n")
+                        file.write(f"Aluno: {aluno.nome}. Nota: {aluno.nota}\n")
             
                 print("notas.txt sobrescrevido com a nova turma")
                 return 0
