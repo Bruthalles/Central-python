@@ -1,0 +1,4 @@
+@startuml bank_inter
+Client -> Bank :hello
+Client <- Bank : bye
+@enduml
