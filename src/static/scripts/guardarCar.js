@@ -19,14 +19,14 @@ export async function guardarCar(){
     if (carro){
     document.getElementById("garage").innerHTML = `
         <section>
-            <p><strong>Marca:</strong> ${carro.marca}</p>
-        <p><strong>Modelo:</strong> ${carro.modelo}</p>
-        <p><strong>Ano:</strong> ${carro.ano}</p>
+            <p><strong>Marca:</strong> ${dados.carro.marca}</p>
+        <p><strong>Modelo:</strong> ${dados.carro.modelo}</p>
+        <p><strong>Ano:</strong> ${dados.carro.ano}</p>
         
         </section>`;
     }
     else{
-        document.getElementById("garage").innerText = "Erro ao carregar o  carro";
+        alert("Erro ao carregar o  carro");
     }
 
 };
