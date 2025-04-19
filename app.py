@@ -62,11 +62,12 @@ def cars():
 @app.route('/garage',methods=['POST'])
 def enviar_carros():
     data = request.json
-    marca = data.get('marca',"vazia")
-    modelo = data.get("modelo","vazio")
-    ano = data.get("ano","nulo")
+    marca = data.get("marca")
+    modelo = data.get("modelo")
+    ano = data.get("ano")
     carro = Car(marca,modelo,ano)
-    return jsonify({"carro": {"Marca":carro.marca, "Modelo": carro.modelo, "Ano":carro.ano}})
+    view_carro = jsonify({"carro": {"Marca":carro.marca, "Modelo": carro.modelo, "Ano":carro.ano}})
+    return view_carro
 
 #########################
 
