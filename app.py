@@ -1,8 +1,8 @@
 import time, re,os
 from backend.classes.Car import Car
+from backend.classes.ContaBancaria import Usuario
+from data.db import BancoDeDados
 from datetime import timedelta
-from data.db import db, init_db
-from data.models import User
 from dotenv import load_dotenv
 from flask import Flask,request,jsonify,redirect, session,url_for,render_template, send_from_directory
 from flask_cors import CORS
@@ -12,10 +12,7 @@ app = Flask(__name__,template_folder="src/templates/",static_folder="src/static"
 CORS(app) #habilita requisições js
 
 #conections
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # evita warnings
 
-init_db(app)
 
 #secret-key
 load_dotenv()
@@ -96,13 +93,13 @@ def signin():
         passpattern = r"^.{4}$"
         email_pattern = r"^\b\w+@\w+\.\w+\b$"
         if re.fullmatch(email_pattern, newemail) and re.fullmatch(passpattern, newpassword):
-            user = User.query.filter_by(email=newemail).first()
+            user = Usuario(email=newemail,senha=newpassword)
             if user:
                 return render_template('bank/signin.html', error="Usuário já existe")
             else:
-                new_user = User(email=newemail, password=newpassword)
-                db.session.add(new_user)
-                db.session.commit()
+                new_user = Usuario(email=newemail, password=newpassword)
+                #db.session.add(new_user)
+                #db.session.commit()
                 print(new_user)
                 return redirect(url_for('login'))
         else:
@@ -118,7 +115,7 @@ def login():
         pattern = r"^\b\w+@\w+\.\w+\b$"
     
         if re.fullmatch(pattern, email) and re.fullmatch(passpattern,password):
-            user = User.query.filter_by(email=email).first()
+            user = Usuario(email=email,senha=password)
             if user and user.password == password:
                 session["user"] = email
                 return redirect(url_for('count'))
