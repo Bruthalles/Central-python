@@ -1,22 +1,3 @@
 @startuml bank_inter
-' actor foo1 #red
-' boundary foo2
-' control foo3
-' entity foo4
-' database foo5
-' collections foo6
-' foo1 -> foo2 : to boundary
-' foo1 -> foo3 : to control
-' foo1 -> foo4 : to entity
-' foo1 -> foo5 : to database
-' foo1 -> foo6 : to collections
 
-actor Bob #blue
-' the only difference between actor and participant is the drawing
-participant allie
-participant "i have a really\nlong name" as L #99FF99
-
-'participant Last order 3
-'participant Middle order 2
-'participant First order 1
 @enduml
