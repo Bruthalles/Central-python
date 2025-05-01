@@ -2,11 +2,23 @@ from datetime import date
 from Pessoa import Pessoa
 from Marca import Marca
 from Veiculo import Veiculo
+from banco import BancoDeDados
 
-pessoa1 = Pessoa(cpf=123456789,nome='josé',nascimento=date(1984,7,26),oculos=True)
+if __name__ == "__main__":
 
-marca1 = Marca(id=1,nome='Fiat',sigla='FIA')
+    banco = BancoDeDados()
 
-veiculo1 = Veiculo('A23B1',"cinza",pessoa1,marca1)
+    banco.conectar()
+    banco.criar_table()
+    pessoa1 = Pessoa(cpf=12222222,nome="Raphael",nascimento="1984-07-27",oculos=True)
+    banco.inserir_pessoa(pessoa1)
 
-print(veiculo1)
+    print("\nMarcas:")
+    for marca in banco.buscar_todas_marcas():
+        print(marca)
+    
+    print("\nVeiculos:")
+    for veiculo in banco.buscar_todos_veiculos():
+        print(veiculo)
+    
+    banco.fechar_conexao()
