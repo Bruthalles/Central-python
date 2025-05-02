@@ -137,36 +137,28 @@ class BancoDeDados:
             try:
                 cursor = self.conn.cursor()
                 cursor.execute(
-                    "UPDATE Pessoa SET nome=?,nascimento=?,oculos=?,WHERE cpf=?",(pessoa.nome,pessoa.nascimento,pessoa.oculos),
+                    "UPDATE Pessoa SET nome=?,nascimento=?,oculos=?,WHERE cpf=?",
+			(pessoa.nome,
+			pessoa.nascimento,
+			pessoa.oculos),
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
                 print(f"Error ao inserir pessoa: {e}")
 
-    def inserir_veiculo(self,veiculo :Veiculo):
+    def atualizar_marca(self, marca):
         if self.conn:
             try:
-                cursor = self.conn.cursor()
-                cursor.execute("INSERT INTO Veiculo VALUES (?,?,?,?)",(
-                    veiculo.placa,
-                    veiculo.cor,
-                    veiculo.proprietario.cpf,
-                    veiculo.marca.id,
-                ),
-                ) 
-                self.conn.commit()
+		cursor = self.conn.cursor()
+		cursor.execute("UPDATE Pessoa SET id=?,nome=?,sigla=?",(
+			pessoa.marca.id,
+			pessoa.marca.nome,
+			pessoa.marca.sigla),
+			)
+		self.conn.commit()
             except sqlite3.Error as e:
-                print(f"Erro ao inserir veiculo {e}")
-    
-    def atualizar_pessoa(self,pessoa):
-        if self.conn:
-            try:
-                cursor = self.conn.cursor()
-                cursor.execute("UPDATE Pessoa SET nome=?,nascimento=?,oculos=?,WHERE cpf=?",
-                               (pessoa.nome,pessoa.nascimento,pessoa.oculos,pessoa.cpf),)
-                self.conn.commit()
-            except sqlite3.Error as e:
-                print(f"erro ao atualizar pessoa: {e}")
+		log_error(e)
+
 
     def atualizar_veiculo(self,veiculo):
         if self.conn:
