@@ -26,8 +26,10 @@ class BancoDeDados:
         try:
             self.conn = sqlite3.connect(self.nome_banco)
         except sqlite3.Error as e:
+            log_info(e)
             print(f"erro ao conectar ao banco de dados: {e}")
         except sqlite3.DatabaseError as dbe:
+            log_info(dbe)
             print(f"erro ao criar o banco {dbe}")
 
     def criar_table(self):
@@ -114,7 +116,22 @@ class BancoDeDados:
                 self.conn.commit()
             except sqlite3.Error as e:
                 print(f"Erro ao inserir veículo: {e}")
-    
+
+    def inserir_marca(self,marca: Marca):
+        if self.conn:
+            try:
+                cursor = self.conn.veiculo()
+                cursor.execute("INSERT INTO Marca VALUES (?,?,?),"
+                (
+                      pessoa.id,
+                      pessoa.marca,
+                      pessoa.sigla,),
+                )
+                self.conn.commit()
+            except sqlite3.Error as e:
+                log_error(e)
+                
+
     def atualizar_pessoa(self,pessoa):
         if self.conn:
             try:
