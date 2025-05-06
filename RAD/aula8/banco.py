@@ -120,12 +120,12 @@ class BancoDeDados:
     def inserir_marca(self,marca: Marca):
         if self.conn:
             try:
-                cursor = self.conn.veiculo()
-                cursor.execute("INSERT INTO Marca VALUES (?,?,?),"
+                cursor = self.conn.cursor()
+                cursor.execute("INSERT INTO Marca VALUES (?,?,?)",
                 (
-                      pessoa.id,
-                      pessoa.marca,
-                      pessoa.sigla,),
+                      marca.id,
+                      marca.nome,
+                      marca.sigla,),
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
@@ -149,15 +149,15 @@ class BancoDeDados:
     def atualizar_marca(self, marca):
         if self.conn:
             try:
-		cursor = self.conn.cursor()
-		cursor.execute("UPDATE Pessoa SET id=?,nome=?,sigla=?",(
-			pessoa.marca.id,
-			pessoa.marca.nome,
-			pessoa.marca.sigla),
-			)
-		self.conn.commit()
+                cursor = self.conn.cursor()
+                cursor.execute("UPDATE Pessoa SET id=?,nome=?,sigla=?",(
+                    marca.id,
+                    marca.nome,
+                    marca.sigla),
+                    )
+                self.conn.commit()
             except sqlite3.Error as e:
-		log_error(e)
+                log_error(e)
 
 
     def atualizar_veiculo(self,veiculo):
@@ -174,7 +174,7 @@ class BancoDeDados:
                            )
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"erro ao atrualizar carro {e}")
+                log_error(e)
 
     def apagar_veiculo(self,veiculo):
         if self.conn:

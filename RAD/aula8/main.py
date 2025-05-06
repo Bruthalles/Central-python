@@ -10,8 +10,16 @@ if __name__ == "__main__":
 
     banco.conectar()
     banco.criar_table()
+
     pessoa1 = Pessoa(cpf=12222222,nome="Raphael",nascimento="1984-07-27",oculos=True)
     banco.inserir_pessoa(pessoa1)
+
+    marca1 = Marca(id=1,nome="fiat",sigla='FIA')
+    banco.inserir_marca(marca1)
+
+    carro1 = Veiculo(placa="12a4re",cor="prata",marca=marca1,proprietario=pessoa1)
+    banco.inserir_veiculo(carro1)
+
 
     print("\nMarcas:")
     for marca in banco.buscar_todas_marcas():
