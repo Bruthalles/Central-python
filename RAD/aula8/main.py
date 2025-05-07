@@ -35,5 +35,11 @@ if __name__ == "__main__":
     print("\nVeiculos:")
     for veiculo in banco.buscar_todos_veiculos():
         print(veiculo)
+
+    
+    pessoa1 = Pessoa(cpf=123456789,nome="Michelangelo",nascimento="1502",oculos=False)
+    banco.atualizar_pessoa(pessoa1)
+
+    banco.apagar_veiculo()
     
     banco.fechar_conexao()

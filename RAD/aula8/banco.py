@@ -19,7 +19,7 @@ def limpar_log():
     
     try:
         with open(path,'w') as a:
-            time.sleep(60)
+            time.sleep(180)
             a.write('')
     except FileNotFoundError as fle:
         log_error(f'erro ao limpar log {fle}')
