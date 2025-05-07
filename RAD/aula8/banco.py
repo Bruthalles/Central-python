@@ -1,21 +1,32 @@
 import os 
 import sqlite3
-import Pessoa,Marca,Veiculo
+from Pessoa import Pessoa
+from Veiculo import Veiculo
+from Marca import Marca
 import logging
+import time 
+
+#definindo caminho do log
+path = os.path.join(os.path.dirname(__file__),'app.log')
 
 logging.basicConfig(
-    filename="app.log",
+    filename=path,
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
-def log_info(message):
-    logging.info(message)
+def limpar_log():
+    
+    try:
+        with open(path,'w') as a:
+            time.sleep(60)
+            a.write('')
+    except FileNotFoundError as fle:
+        log_error(f'erro ao limpar log {fle}')
 
 def log_error(message):
     logging.error(message)
-
-
+    
 
 class BancoDeDados:
     def __init__(self,nome_banco="banco.db"):
@@ -26,11 +37,11 @@ class BancoDeDados:
         try:
             self.conn = sqlite3.connect(self.nome_banco)
         except sqlite3.Error as e:
-            log_info(e)
-            print(f"erro ao conectar ao banco de dados: {e}")
+            
+            log_error(f"erro ao conectar ao banco de dados: {e}")
         except sqlite3.DatabaseError as dbe:
-            log_info(dbe)
-            print(f"erro ao criar o banco {dbe}")
+            
+            log_error(f"erro ao criar o banco {dbe}")
 
     def criar_table(self):
         self.criar_tb_pessoa()
@@ -43,7 +54,7 @@ class BancoDeDados:
                 cursor = self.conn.cursor()
                 cursor.execute(
                     """CREATE TABLE IF NOT EXISTS Pessoa (
-                        cpf INTEGER PRIMARY KEY,
+                        cpf INTEGER PRIMARY KEY NOT NULL,
                         nome TEXT NOT NULL,
                         nascimento DATE,
                         oculos BOLLEAN
@@ -51,9 +62,9 @@ class BancoDeDados:
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"erro ao criar tabela pessoa {e}")
+                log_error(f"erro ao criar tabela pessoa {e}")
             except sqlite3.IntegrityError as it:
-                print(f"erro de api {it}")
+                log_error(f"erro de api {it}")
 
     def criar_tb_marca(self):
         if self.conn:
@@ -61,14 +72,14 @@ class BancoDeDados:
                 cursor = self.conn.cursor()
                 cursor.execute(
                     """CREATE TABLE IF NOT EXISTS Marca (
-                        id INTEGER PRIMARY KEY,
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
                         nome TEXT NOT NULL,
                         sigla TEXT 
                         )"""
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"erro ao criar tabela marca: {e}")
+                log_error(f"erro ao criar tabela marca: {e}")
 
     def criar_tb_veiculo(self):
         if self.conn:
@@ -76,20 +87,20 @@ class BancoDeDados:
                 cursor = self.conn.cursor()
                 cursor.execute(
                     """CREATE TABLE IF NOT EXISTS Veiculo(
-                        placa TEXT PRIMARY KEY,
+                        placa TEXT PRIMARY KEY NOT NULL,
                         cor TEXT NOT NULL,
                         cpf_proprietario INTEGER,
                         id_marca INTEGER,
                         FOREIGN KEY (cpf_proprietario) REFERENCES Pessoa(cpf),
-                        FOREIGN KEY (id_marca) REFERENCES (Marca(id))
-                    )"""
+                        FOREIGN KEY (id_marca) REFERENCES Marca(id)
+                        )"""
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"erro ao criar tabela veiculo {e}")
+                log_error(f"erro ao criar tabela veiculo {e}")
 
             except sqlite3.OperationalError as op:
-                print(f"erro ao criar tabela {op}")
+                log_error(f"erro ao criar tabela {op}")
 
     def inserir_pessoa(self,pessoa:Pessoa):
         if self.conn:
@@ -99,7 +110,7 @@ class BancoDeDados:
                                (pessoa.cpf,pessoa.nome,pessoa.nascimento,pessoa.oculos),)
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"erro inserir pessoa {e}")
+                log_error(f"erro inserir pessoa {e}")
     
     def inserir_veiculo(self,veiculo: Veiculo):
         if self.conn:
@@ -115,7 +126,7 @@ class BancoDeDados:
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"Erro ao inserir veículo: {e}")
+                log_error(f"Erro ao inserir veículo: {e}")
 
     def inserir_marca(self,marca: Marca):
         if self.conn:
@@ -144,7 +155,7 @@ class BancoDeDados:
                 )
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"Error ao inserir pessoa: {e}")
+                log_error(f"Error ao inserir pessoa: {e}")
 
     def atualizar_marca(self, marca):
         if self.conn:
@@ -183,7 +194,7 @@ class BancoDeDados:
                 cursor.execute("DELETE FROM Veiculo WHERE placa=?",(veiculo.placa,))
                 self.conn.commit()
             except sqlite3.Error as e:
-                print(f"Erro ao apagar veiculo: {e}")
+                log_error(f"Erro ao apagar veiculo: {e}")
 
     def buscar_todas_pessoas(self):
         pessoas = []
@@ -196,8 +207,23 @@ class BancoDeDados:
                     cpf,nome,nascimento,oculos = row
                     pessoas.append(Pessoa(cpf,nome,nascimento,oculos))
             except sqlite3.Error as e:
-                print(f"erro ao buscar pessoas: {e}")
+                log_error(f"erro ao buscar pessoas: {e}")
         return pessoas
+    
+    def buscar_todas_marcas(self):
+        marcas = []
+
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                cursor.execute("SELECT * FROM Marca")
+                for row in cursor.fetchall():
+                    id,nome,sigla = row
+                    marcas.append(Marca(id,nome,sigla))
+
+            except sqlite3.Error as e:
+                log_error(f"erro ao buscar marcas: {e}")
+        return marcas
     
     def buscar_todos_veiculos(self):
         veiculos =[]
@@ -209,11 +235,24 @@ class BancoDeDados:
                     placa,cor,cpf_proprietario,id_marca = row
                     proprietario = self.buscar_pessoa_por_cpf(cpf_proprietario)
                     marca = self.buscar_marca_por_id(id_marca)
-                    veiculos.append(Veiculo(placa,cor,proprietario,marca))
+                    veiculos.append(Veiculo(placa,cor,marca,proprietario))
             except sqlite3.Error as e:
-                print(f"Erro ao buscar veiculo : {e}")
+                log_error(f"Erro ao buscar veiculo : {e}")
         return veiculos
     
+    def buscar_marca_por_id(self,id:int):
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                cursor.execute("SELECT * FROM Marca WHERE id=?",(id,))
+                row = cursor.fetchone()
+                if row:
+                    id,nome,sigla = row
+                    return Marca(id,nome,sigla)
+            except sqlite3.Error as e:
+                log_error(f"erro ao buscar marca por id: {e}")
+        return None
+
     def buscar_pessoa_por_cpf(self,cpf:int):
         if self.conn:
             try:
@@ -224,11 +263,12 @@ class BancoDeDados:
                     cpf,nome,nascimento,oculos = row
                     return Pessoa(cpf,nome,nascimento,oculos)
             except sqlite3.Error as e:
-                print(f"erro ao buscar pessoa por cpf: {e}")
+                log_error(f"erro ao buscar pessoa por cpf: {e}")
         return None
 
     def fechar_conexao(self):
         if self.conn:
+            limpar_log()
             self.conn.close()
             self.conn = None
 
