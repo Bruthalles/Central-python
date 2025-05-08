@@ -1,7 +1,6 @@
 import time, re,os
 from backend.classes.Car import Car
 from backend.classes.ContaBancaria import Usuario
-from data.db import BancoDeDados
 from datetime import timedelta
 from dotenv import load_dotenv
 from flask import Flask,request,jsonify,redirect, session,url_for,render_template, send_from_directory
