@@ -1,0 +1,8 @@
+@startuml usecaos
+
+actor cliente #blue
+usecase sacar 
+usecase depositar
+
+
+@enduml
